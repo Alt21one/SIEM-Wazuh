@@ -38,3 +38,5 @@ Rule `100202` triggers when Syscollector detects a newly opened listening port a
   </mitre>
   <group>network_ports,c2,suspicious_ports,</group>
 </rule>
+```
+![Rule 100202 Alert](../screenshots/100202-suspicious-listening-port.png)

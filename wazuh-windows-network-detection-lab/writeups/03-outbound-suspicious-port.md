@@ -39,3 +39,5 @@ Rule `100203` triggers when Sysmon logs a network connection where the destinati
   </mitre>
   <group>network_anomaly,c2,suspicious_connection,</group>
 </rule>
+```
+![Rule 100203 Alert](../screenshots/100203-outbound-suspicious-port.png)
