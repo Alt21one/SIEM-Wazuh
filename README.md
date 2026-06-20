@@ -1,33 +1,28 @@
-# SIEM-Wazuh-Splunk Home Lab
+# Wazuh Windows Network Detection Lab
 
-A cybersecurity home lab project built to simulate endpoint monitoring, custom detection engineering, and SIEM alerting using Wazuh, Sysmon, and Windows telemetry.
-
-This project focuses on detecting suspicious endpoint behavior such as newly opened listening ports, outbound connections to suspicious ports, process activity, and PowerShell-based command execution.
+A home lab project built to detect suspicious network activity on a Windows endpoint using Wazuh, Syscollector, and Sysmon.
 
 ## Overview
 
-This lab demonstrates how a Windows endpoint can be monitored using Wazuh and Sysmon, with custom detection rules written to identify activity that may indicate attacker behavior or command-and-control activity.
+This project demonstrates custom Wazuh detection engineering for Windows endpoint monitoring. The lab detects when a host opens a new listening port and when a host connects to suspicious ports commonly associated with command and control activity.
 
-The project includes:
+## Tools Used
 
 - Wazuh Manager, Indexer, and Dashboard
-- Windows endpoint monitoring
-- Sysmon event collection
-- Syscollector inventory monitoring
-- Custom Wazuh rules
-- Detection write-ups
-- Screenshots of triggered alerts
+- Windows 10 endpoint
+- Wazuh Agent
+- Sysmon
+- Python HTTP server for port testing
+- VirtualBox / VMware
 
-## Lab Architecture
+## Detection Rules
 
-```text
-Host Machine
-│
-├── Ubuntu Server VM
-│   └── Wazuh Manager + Indexer + Dashboard
-│
-└── Windows 10/11 VM
-    ├── Wazuh Agent
-    ├── Sysmon
-    └── Syscollector
-```
+| Rule ID | Description | MITRE ATT&CK |
+|---|---|---|
+| 100201 | Host opened a new listening port | Discovery / Network Activity |
+| 100202 | Suspicious listening port opened | T1071 |
+| 100203 | Outbound connection to suspicious port | T1071 |
+
+## Results
+
+All rules were successfully tested in the Wazuh dashboard. Syscollector detected newly opened listening ports, while Sysmon provided process-level telemetry for outbound network connections.
